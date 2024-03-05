@@ -1,0 +1,21 @@
+.navbar {
+  background-color: rgba(116, 144, 156, 0.658);
+}
+.Wonderer {
+  color: rgb(46, 88, 41) !important;
+  font-weight: 700;
+}
+.nav_img {
+  margin: 0;
+  height: 40px;
+  border-radius: 100%;
+  margin-left: 2rem;
+}
+.login_links {
+  margin-right: 1rem;
+  color: rgb(33, 57, 88) !important;
+}
+.register_links {
+  margin-right: 2rem;
+  color: rgb(33, 57, 88) !important;
+}

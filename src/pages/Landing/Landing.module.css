@@ -1,0 +1,15 @@
+.main {
+  z-index: 20;
+}
+.wonderer_img {
+  width: 500px;
+  height: 600px;
+  border-radius: 500px;
+  object-fit: cover;
+}
+.Wonderer_text {
+  color: red;
+}
+.endless {
+  color: blueviolet;
+}
