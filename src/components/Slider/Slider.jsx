@@ -33,7 +33,6 @@ const Slider = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      );
     </>
   );
 };

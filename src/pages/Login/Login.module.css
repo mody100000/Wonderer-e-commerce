@@ -54,12 +54,14 @@ textarea {
   width: 95%;
   margin: 12px auto;
   margin-bottom: 2rem;
+  margin-top: 3rem;
   font-weight: bold;
 }
 .input_container {
   display: flex;
   align-items: flex-end;
-  margin-bottom: 4rem;
+  margin-top: 3rem;
+  margin-bottom: 10px;
 }
 
 .input_container svg {

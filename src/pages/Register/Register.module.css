@@ -58,7 +58,9 @@ textarea {
 .input_container {
   display: flex;
   align-items: flex-end;
-  margin-bottom: 4rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
 }
 
 .input_container svg {
