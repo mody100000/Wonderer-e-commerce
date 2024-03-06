@@ -8,7 +8,6 @@ import { useFormik } from "formik";
 
 const Register = () => {
   const navigate = useNavigate();
-  //TODO:how the fk i will verfiy email
   const register = async (values) => {
     console.log(values);
     const { data } = await axios.post(

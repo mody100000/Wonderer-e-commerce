@@ -4,6 +4,7 @@ import { IoLogIn } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -31,14 +32,20 @@ const Navbar = () => {
         <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav  ms-auto">
             <li className="nav-item">
-              <a className={`nav-link fs-5 fw-bold ${styles.login_links}`}>
+              <Link
+                to="/auth/home"
+                className={`nav-link fs-5 fw-bold ${styles.login_links}`}
+              >
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className={`nav-link fs-5 fw-bold ${styles.login_links}`}>
+              <Link
+                to="/auth/products"
+                className={`nav-link fs-5 fw-bold ${styles.login_links}`}
+              >
                 All products
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className={`nav-link fs-5 fw-bold ${styles.login_links}`}>

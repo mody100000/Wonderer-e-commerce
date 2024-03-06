@@ -5,10 +5,10 @@ import Landing from "./pages/Landing/Landing";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
-import { useContext, useEffect } from "react";
-import { tokenContext } from "./contexts/authContext";
+import TokenContextProvider, { tokenContext } from "./contexts/authContext";
 import MainLayout from "./layouts/MainLayout/MainLayout";
 import ProtectedRouteAuth from "./components/ProtectedRouteAuth/ProtectedRouteAuth";
+import Products from "./pages/Products/Products";
 
 const routes = createBrowserRouter([
   {
@@ -29,20 +29,20 @@ const routes = createBrowserRouter([
         path: "home",
         element: <Home />,
       },
+      {
+        path: "products",
+        element: <Products />,
+      },
     ],
   },
 ]);
 
 function App() {
-  const { setToken } = useContext(tokenContext);
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
-    }
-  }, []);
   return (
     <>
-      <RouterProvider router={routes}></RouterProvider>
+      <TokenContextProvider>
+        <RouterProvider router={routes}></RouterProvider>
+      </TokenContextProvider>
     </>
   );
 }

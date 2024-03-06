@@ -1,47 +1,64 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import Slider from "../../components/Slider/Slider";
 import { tokenContext } from "./../../contexts/authContext";
-import styles from "./Home.module.css";
+import styles from "./Products.module.css";
 import { CiHeart } from "react-icons/ci";
+import Categories from "../../components/Categories/Categories";
 
-const Home = () => {
+const Products = () => {
   const { token } = useContext(tokenContext);
-  const [data, setData] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [iconStates, setIconStates] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const handleIconClick = (index) => {
     setIconStates((prevStates) =>
       prevStates.map((state, i) => (i === index ? !state : state))
     );
   };
+
   const getData = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/products", {
+      const response = await axios.get("http://localhost:8000/product", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setData(response.data.getingProducts);
-      console.log(response.data.getingProducts);
+      setAllProducts(response.data.getingProducts);
+      setFilteredProducts(response.data.getingProducts);
     } catch (error) {
       console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleSelectCategory = (categoryId) => {
+    setSelectedCategory(categoryId);
+
+    if (categoryId) {
+      const filtered = allProducts.filter(
+        (product) => product.category === categoryId
+      );
+      setFilteredProducts(filtered);
+    } else {
+      // If no category selected, show all products
+      setFilteredProducts(allProducts);
     }
   };
 
   useEffect(() => {
     if (token) getData();
   }, [token]);
+
   return (
     <>
-      <Slider />
+      <Categories onSelectCategory={handleSelectCategory} />
       <div className="container py-5">
-        <h2 className={`text-center mb-5 text-success`}>Best Sales</h2>
-        {data?.length == 0 ? (
+        {filteredProducts.length === 0 ? (
           <i className="fa fa-spin fa-3x fa-spinner "></i>
         ) : null}
         <div className="row">
-          {data?.map((prod, index) => (
+          {filteredProducts.map((prod, index) => (
             <div className="col-md-4 mb-4" key={index}>
               <div className="card">
                 <img
@@ -80,4 +97,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Products;
