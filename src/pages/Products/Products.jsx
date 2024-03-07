@@ -4,6 +4,7 @@ import { tokenContext } from "./../../contexts/authContext";
 import styles from "./Products.module.css";
 import { CiHeart } from "react-icons/ci";
 import Categories from "../../components/Categories/Categories";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const { token } = useContext(tokenContext);
@@ -11,7 +12,7 @@ const Products = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [iconStates, setIconStates] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-
+  const [cart, setCart] = useState([]);
   const handleIconClick = (index) => {
     setIconStates((prevStates) =>
       prevStates.map((state, i) => (i === index ? !state : state))
@@ -29,6 +30,36 @@ const Products = () => {
       setFilteredProducts(response.data.getingProducts);
     } catch (error) {
       console.error("Error fetching data:", error);
+    }
+  };
+
+  const postProdToCart = async (productId) => {
+    try {
+      // Make sure productId is defined before sending the request
+      if (!productId) {
+        console.error("ProductId is undefined");
+        return;
+      }
+
+      const response = await axios.post(
+        "http://localhost:8000/cart",
+        {
+          products: [
+            {
+              product: productId,
+            },
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCart(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
     }
   };
 
@@ -78,7 +109,17 @@ const Products = () => {
                   <p className="card-text fs-5">Price: ${prod.finalPrice}</p>
                 </div>
                 <div className="card-footer d-flex justify-content-between align-items-center">
-                  <button className="btn btn-success">Add to Cart</button>
+                  <Link to="/auth/cart">
+                    <button
+                      className="btn btn-success"
+                      onClick={() => {
+                        console.log("Product ID:", prod._id);
+                        postProdToCart(prod._id);
+                      }}
+                    >
+                      Add to Cart
+                    </button>
+                  </Link>
                   <span
                     className={`d-flex align-items-center  ${
                       iconStates[index] ? "text-danger" : ""

@@ -9,6 +9,8 @@ import TokenContextProvider, { tokenContext } from "./contexts/authContext";
 import MainLayout from "./layouts/MainLayout/MainLayout";
 import ProtectedRouteAuth from "./components/ProtectedRouteAuth/ProtectedRouteAuth";
 import Products from "./pages/Products/Products";
+import Cart from "./pages/Cart/Cart";
+import Orders from "./pages/Order/Order";
 
 const routes = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ const routes = createBrowserRouter([
       {
         path: "products",
         element: <Products />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "order",
+        element: <Orders />,
       },
     ],
   },

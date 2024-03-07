@@ -1,7 +1,6 @@
 import styles from "./Navbar.module.css";
 import nav from "../../assets/nav.jpg";
 import { IoLogIn } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
 import { FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -48,9 +47,20 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className={`nav-link fs-5 fw-bold ${styles.login_links}`}>
+              <Link
+                to="/auth/order"
+                className={`nav-link fs-5 fw-bold ${styles.login_links}`}
+              >
                 Orders
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/auth/cart"
+                className={`nav-link fs-5 fw-bold ${styles.login_links}`}
+              >
+                cart
+              </Link>
             </li>
           </ul>
         </div>
@@ -65,14 +75,12 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className={`nav-link fs-5 ${styles.login_links}`}>
+              <Link
+                to="/auth/cart"
+                className={`nav-link fs-5 ${styles.login_links}`}
+              >
                 <IoCartOutline size={25} />
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className={`nav-link fs-5 ${styles.login_links}`}>
-                <CgProfile size={25} />
-              </a>
+              </Link>
             </li>
             <li className="nav-item ">
               <a className={`nav-link fs-5 ${styles.register_links}`}>
